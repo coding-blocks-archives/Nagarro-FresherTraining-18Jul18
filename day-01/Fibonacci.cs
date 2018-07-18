@@ -4,6 +4,7 @@ namespace day_01
 {
     class Fibonacci
     {
+        static int counter = 0;
         public static void RecMain()
         {
             // int n = int.Parse(Console.ReadLine());
@@ -17,9 +18,10 @@ namespace day_01
             // Program.InputArray(arr);
             // bubbleSort(arr, 0);
             // Program.OutputArray(arr);
-        
+
             String inputStr = Console.ReadLine();
-            char[] decisionSoFar = new char[inputStr.Length + 1];
+            char[] decisionSoFar = new char[inputStr.Length];
+            counter = 0;
             printPermutations(inputStr.ToCharArray(), 0, decisionSoFar, 0);
         }
         static int fibRec(int n)
@@ -64,14 +66,16 @@ namespace day_01
         }
 
         static void printPermutations(char[] inputArr, int beginIdx, char[] decisionSoFar, int idxForDecision)
-        {   
-            if (beginIdx >= inputArr.Length){
+        {
+            if (beginIdx >= inputArr.Length)
+            {   ++counter;
+                Console.Write(counter + " ");
                 Console.WriteLine(decisionSoFar);
                 return;
             }
 
             char[] originalInput = new char[inputArr.Length];
-            Array.Copy(originalInput, inputArr, inputArr.Length);
+            Array.Copy(inputArr, originalInput, inputArr.Length);
 
             for (int i = beginIdx; i < inputArr.Length; ++i)
             {
@@ -79,11 +83,19 @@ namespace day_01
                 char tmp = originalInput[i];
                 originalInput[i] = originalInput[beginIdx];
                 originalInput[beginIdx] = tmp;
-                Array.Copy(inputArr, originalInput, inputArr.Length);
+
                 // print Permutations
-                decisionSoFar[idxForDecision] = inputArr[beginIdx];
-                printPermutations(inputArr, beginIdx + 1, decisionSoFar, idxForDecision + 1);   
+                decisionSoFar[idxForDecision] = originalInput[beginIdx];
+
+                for (int j = beginIdx; j < inputArr.Length; ++j)
+                {
+                    inputArr[j] = originalInput[j];
+                }
+
+                printPermutations(inputArr, beginIdx + 1, decisionSoFar, idxForDecision + 1);
             }
         }
+
+
     }
 }
