@@ -19,10 +19,22 @@ namespace day_01
             // bubbleSort(arr, 0);
             // Program.OutputArray(arr);
 
-            String inputStr = Console.ReadLine();
-            char[] decisionSoFar = new char[inputStr.Length];
-            counter = 0;
-            printPermutations(inputStr.ToCharArray(), 0, decisionSoFar, 0);
+            // String inputStr = Console.ReadLine();
+            // char[] decisionSoFar = new char[inputStr.Length];
+            // counter = 0;
+            // printPermutations(inputStr.ToCharArray(), 0, decisionSoFar, 0);
+
+            int n = int.Parse(Console.ReadLine());
+            int[,] board = new int[n,n];
+            // TODO how to input board rows using foreach
+            Program.InputMatrix(board);
+            State status =  solveSudoku(board, 0, 0);
+            if (status == State.SUCCESS){
+                Program.PrintMatrix(board);
+            }
+            else {
+                Console.WriteLine("Sorry Dude...Can't Solve your sudoku. Neither you can ;-)");
+            }
         }
         static int fibRec(int n)
         {
@@ -68,7 +80,8 @@ namespace day_01
         static void printPermutations(char[] inputArr, int beginIdx, char[] decisionSoFar, int idxForDecision)
         {
             if (beginIdx >= inputArr.Length)
-            {   ++counter;
+            {
+                ++counter;
                 Console.Write(counter + " ");
                 Console.WriteLine(decisionSoFar);
                 return;
@@ -96,6 +109,65 @@ namespace day_01
             }
         }
 
+        enum State { SUCCESS, FAILURE };
 
+        static bool canPlace(int[,] board, int curRow, int curCol, int numToPlace){
+            for(int x = 0; x < board.GetLength(0); ++x){
+                if (board[curRow, x] == numToPlace) return false;   // check along row
+                if (board[x, curCol] == numToPlace) return false;
+            }
+
+            // TODO how to make rootN Const
+            int rootN = (int)Math.Sqrt(1.0 * board.GetLength(0));
+            int boxStartRow = curRow - curRow % rootN;
+            int boxStartCol = curCol - curCol % rootN;
+
+            for(int r = boxStartRow; r < boxStartRow + rootN; ++r){
+                for(int c = boxStartCol; c < boxStartCol + rootN; ++c){
+                    if (board[r, c] == numToPlace) return false;
+                }
+            }
+
+            return true;
+        }
+
+        static State solveSudoku(int[,] board, int curRow, int curCol){
+            // if out of rows, i.e. all upper rows are already filled
+            if (curRow == board.GetLength(0)){
+                return State.SUCCESS;
+            }
+
+            // if out of cols, start with a fresh row
+            if (curCol == board.GetLength(0)){
+                State statusOfBoardFrmNextRow = solveSudoku(board, curRow + 1, 0);
+                return statusOfBoardFrmNextRow;
+            }
+
+            // this line No implies that I am on a correct cell within the board
+            if (board[curRow, curCol] != 0){
+                // its a fixed cell :)...Nothing to do for me
+                State statusOfBoardFrmNextCell = solveSudoku(board, curRow, curCol + 1);
+                return statusOfBoardFrmNextCell;
+            }
+
+            // NOW, this is something I have to work upon
+            for(int num = 1; num <= board.GetLength(0); ++num){
+                bool check = canPlace(board, curRow, curCol, num);
+                if (check == true){
+                    // I can place num at cell with coordinates (curRow, curCol)
+                    board[curRow, curCol] = num;
+                    State statusOfRemBoard = solveSudoku(board, curRow, curCol + 1);
+                    if (statusOfRemBoard == State.SUCCESS){
+                        // Bingo!!! I have solved the board...nothing to do now
+                        return State.SUCCESS;
+                    }
+                    else {
+                        // The potential number which I placed is wrong. Some other potential number should come
+                        board[curRow, curCol] = 0;
+                    }
+                }
+            }
+            return State.FAILURE;
+        }
     }
 }
