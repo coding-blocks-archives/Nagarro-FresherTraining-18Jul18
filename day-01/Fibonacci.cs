@@ -26,7 +26,7 @@ namespace day_01
 
             int n = int.Parse(Console.ReadLine());
             int[,] board = new int[n,n];
-            // TODO how to input board rows using foreach
+            // how to input board rows using foreach
             Program.InputMatrix(board);
             State status =  solveSudoku(board, 0, 0);
             if (status == State.SUCCESS){
@@ -117,7 +117,7 @@ namespace day_01
                 if (board[x, curCol] == numToPlace) return false;
             }
 
-            // TODO how to make rootN Const
+            // how to make rootN Const 
             int rootN = (int)Math.Sqrt(1.0 * board.GetLength(0));
             int boxStartRow = curRow - curRow % rootN;
             int boxStartCol = curCol - curCol % rootN;

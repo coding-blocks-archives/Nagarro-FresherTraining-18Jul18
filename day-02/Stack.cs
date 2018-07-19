@@ -15,6 +15,12 @@ namespace Adapter
             Count = 0;
         }
 
+        public MyStack(MyStack<T> fromStk){
+            list = new LinkedList<T>(fromStk.list);
+            Count = 0;   
+        }
+
+
         public void Push(T obj){
             list.AddLast(obj);
             ++Count;
