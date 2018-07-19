@@ -1,0 +1,11 @@
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.csprojAssemblyReference.cache
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.csproj.CoreCompileInputs.cache
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.AssemblyInfoInputs.cache
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.AssemblyInfo.cs
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\bin\Debug\netcoreapp2.1\day-02.deps.json
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\bin\Debug\netcoreapp2.1\day-02.runtimeconfig.json
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\bin\Debug\netcoreapp2.1\day-02.runtimeconfig.dev.json
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\bin\Debug\netcoreapp2.1\day-02.dll
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\bin\Debug\netcoreapp2.1\day-02.pdb
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.dll
+C:\Users\Deepak\Desktop\Nagarro-FresherTraining-18Jul18\day-02\obj\Debug\netcoreapp2.1\day-02.pdb
