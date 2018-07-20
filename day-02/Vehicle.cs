@@ -12,7 +12,7 @@ namespace day_02
 
     class Car : Vehicle
     {
-        // TODO read about access specifiers
+        //  read about access specifiers
         private int noOfSeats;
         private double curSpeed; 
         

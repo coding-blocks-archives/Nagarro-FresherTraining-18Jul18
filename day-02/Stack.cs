@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
 
-// TODO Check what is Add<T>
+// Check what is Add<T> : Interface
 namespace Adapter
 {
-    class MyStack<T>
+    public class MyStack<T>
     {
         LinkedList<T> list;
+        ICollection<T> ptr;
         public int Count { get; private set; }
 
         public MyStack()
         {
             list = new LinkedList<T>();
+            ptr = list;
             Count = 0;
         }
 
@@ -22,7 +24,9 @@ namespace Adapter
 
 
         public void Push(T obj){
-            list.AddLast(obj);
+            // list.AddLast(obj);
+            // explicit means that the interface methods are public in interface only
+            ptr.Add(obj);
             ++Count;
         }
 

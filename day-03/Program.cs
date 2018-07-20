@@ -7,7 +7,8 @@ namespace day_03
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Tree.TreeUser.main();
+            // Tree.TreeUser.main();
+            Heap.PQUser.main();
         }
     }
 }

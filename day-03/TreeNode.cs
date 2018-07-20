@@ -31,4 +31,22 @@ namespace Tree
             return this.right;
         }
     }
+
+    // TODO use this to create a BinaryTreeSpecial
+    public class TreeNodeSpecial<T> : TreeNode<T>
+    {
+        TreeNode<T> next;
+
+        public TreeNodeSpecial(T data) : base(data){
+            next = null;
+        }
+
+        public TreeNode<T> GetNext(){
+            return next;
+        }
+
+        public void SetNext(TreeNode<T> nextNode){
+            this.next = nextNode;
+        }
+    }
 }
