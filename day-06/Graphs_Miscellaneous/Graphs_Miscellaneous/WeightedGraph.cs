@@ -107,13 +107,96 @@ namespace Graphs_Miscellaneous
                 g.AddEdge(srcDest[0], srcDest[1], srcDest[2]);
             }
 
-            int src = int.Parse(Console.ReadLine());
-            int[] minDist = Dijkstra(g, src);
+            // int src = int.Parse(Console.ReadLine());
+            // int[] minDist = Dijkstra(g, src);
 
-            foreach(int cur in minDist)
+            int minCost = MinCostUsingKruskal(g, numEdges);
+
+
+            foreach (int cur in minDist)
             {
                 Console.Write(cur + " ");
             }
+        }
+
+        class UnionSet
+        {
+            int[] parent;
+            int[] size;
+
+            public UnionSet(int numItem)
+            {
+                parent = new int[numItem];
+                size = new int[numItem];
+
+                for(int i = 0; i < numItem; ++i)
+                {
+                    parent[i] = i;
+                    size[i] = 1;
+                }
+            }
+
+            private int Root(int curIdx)
+            {
+                while(curIdx != parent[curIdx])
+                {
+                    curIdx = parent[curIdx];
+                }
+                return curIdx;
+            }
+
+            public bool IsSameSet(int item1, int item2)
+            {
+                return Root(item1) == Root(item2);
+            }
+
+            public void MakeUnion(int item1, int item2)
+            {
+                int root1 = Root(item1);
+                int root2 = Root(item2);
+                if (size[root1] > size[root2]) {
+                    parent[root2] = root1;
+                    size[root1] += size[root2];
+                }
+                else
+                {
+                    parent[root1] = root2;
+                    size[root2] += size[root1];
+                }
+            }
+        }
+
+        int MinCostUsingKruskal(WeightedGraph<int> g, int numEdges)
+        {
+            int minCost = 0;
+            Tuple<int, int, int>[] edgeList = new Tuple<int, int, int>[numEdges];
+
+            Dictionary<int, List<Tuple<int, int>>>.Enumerator it = g.adjList.GetEnumerator();
+            while (it.MoveNext())
+            {
+                int curVtx = it.Current.Key;
+                int curNbr = it.Current.Value.Item1;
+                int curWt = it.Current.Value.Item2;
+                edgeList[i] = Tuple<int, int, int>(curVtx, curNbr, curWt)
+            }
+
+            Array.Sort(edgeList, delegate (Edge e1, Edge e2) { });
+            UnionSet edgeSet(g.numVertices);
+
+            for(int i = 0; i < numEdges; ++i)
+            {
+                var curEdge = edgeList[i];
+                int vtx1 = curEdge.Item1;
+                int vtx2 = curEdge.Item2;
+                if (edgeSet.IsSameSet(vtx1, vtx2) == false)
+                {
+                    // curEdge is significant
+                    minCost += curEdge.Item3;
+                    edgeSet.MakeUnion(vtx1, vtx2);
+                }
+            }
+            return minCost;
+
         }
     }
 }

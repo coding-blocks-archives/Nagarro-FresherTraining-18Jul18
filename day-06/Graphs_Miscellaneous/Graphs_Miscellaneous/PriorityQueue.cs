@@ -43,6 +43,7 @@ namespace Graphs_Miscellaneous
                 if (element1.CompareTo(element2) < 0)
                 {
                     Swap(list[curIdx], list[parent(curIdx)]);
+                    //Swap(element1, element2);
                     curIdx = parent(curIdx);
                 }
                 else
