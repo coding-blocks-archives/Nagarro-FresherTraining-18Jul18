@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,7 +93,7 @@ namespace Graphs
                 g.AddEdge(srcDest[0], srcDest[1]);
             }
 
-            g.PrintGraph();
+            g.PrintGraph()
             g.dfs("Switzerland");
         }
     }
